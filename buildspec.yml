@@ -13,7 +13,8 @@ phases:
       - sudo mkdir -p /var/www/html
       - echo "This is test file by Kush" > index.html
       - cp index.html /var/www/html
-      - systemctl restart nginx
+      - sudo nginx -t
+      - systemctl start nginx
   post_build:
     commands:
       - echo Configuring NGINX
