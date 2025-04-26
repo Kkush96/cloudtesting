@@ -6,13 +6,17 @@ phases:
       - echo Installing NGINX - echo yum install NGINX
       - sudo yum update -y
       - sudo yum install nginx -y
+      - sudo systemctl enable nginx
   build:
     commands:
       - echo Build started on date
+      - sudo mkdir -p /var/www/html
+      - echo "This is test file by Kush" > /var/www/html
       - cp index.html /var/www/html
   post_build:
     commands:
       - echo Configuring NGINX
+      - systemctl restart nginx
 artifacts:
   files:
     - /var/www/html/index.html
